@@ -2,7 +2,7 @@ package g.takeru.renshu.leetcode.problems
 
 import timber.log.Timber
 
-class TwoSum {
+class No1TwoSum {
 
     /**
      * Given an array of integers, return indices of the two numbers such that they add up
@@ -18,17 +18,18 @@ class TwoSum {
     fun testing() {
         val testData = intArrayOf(2, 7, 11, 15)
         val target = 9
-        var result = TwoSum().solution1(testData, target)
-        Timber.d("solution1 : [${result!![0]}, ${result!![1]}]")
-        result = TwoSum().solution2(testData, target)
-        Timber.d("solution2 : [${result!![0]}, ${result!![1]}]")
+        val result1 = No1TwoSum().solution1(testData, target)
+        Timber.d("solution1 : [${result1[0]}, ${result1[1]}]")
+        val result2 = No1TwoSum().solution2(testData, target)
+        Timber.d("solution2 : [${result2[0]}, ${result2[1]}]")
     }
 
     // Brute Force : Time complexity : O(n^2)
-    fun solution1 (nums: IntArray, target: Int): IntArray? {
+    private fun solution1 (nums: IntArray, target: Int): IntArray {
         for (i in nums.indices) {
             for (j in nums.indices) {
-                if (nums[i] + nums[j] == target) {
+                if (nums[i] + nums[j] == target
+                    && i != j) {
                     return intArrayOf(i, j)
                 }
             }
@@ -37,10 +38,10 @@ class TwoSum {
     }
 
     // One-pass Hash Table : Time complexity : O(n)
-    fun solution2 (nums: IntArray, target: Int): IntArray? {
-        var map = mutableMapOf<Int, Int?>()
+    private fun solution2 (nums: IntArray, target: Int): IntArray {
+        val map = mutableMapOf<Int, Int?>()
         for (i in nums.indices) {
-            var complement = target - nums[i]
+            val complement = target - nums[i]
             if (map.containsKey(complement)) {
                 return intArrayOf(i, map[complement]!!)
             }
