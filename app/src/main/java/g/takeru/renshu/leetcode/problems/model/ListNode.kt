@@ -6,8 +6,8 @@ class ListNode(var value: Int = 0) {
     var next: ListNode? = null
 }
 
-fun printLinkedList(head: ListNode?) {
-    var curr = head
+fun ListNode?.printLinkedList() {
+    var curr = this
     var linkedList = ""
     while (curr != null) {
         linkedList += curr.value.toString() + " -> "
