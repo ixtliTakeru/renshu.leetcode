@@ -2,17 +2,25 @@ package g.takeru.renshu.leetcode.problems
 
 import g.takeru.renshu.leetcode.problems.model.ListNode
 import g.takeru.renshu.leetcode.problems.model.printLinkedList
+import timber.log.Timber
 
-class ReverseLinkedList {
+class No206ReverseLinkedList {
 
     /**
-     * Reverse a singly linked list.
+     * Easy
+     *
+     * Given the head of a singly linked list, reverse the list, and return the reversed list.
      *
      * Hint:
      * A linked list can be reversed either iteratively or recursively. Could you implement both?
      *
-     * Example
-     * For linked list 1->2->3, the reversed linked list is 3->2->1
+     * Example 1:
+     * Input: head = [1,2,3,4,5]
+     * Output: [5,4,3,2,1]
+     *
+     * Example 2:
+     * Input: head = [1,2]
+     * Output: [2,1]
      */
 
     fun testing () {
@@ -24,11 +32,11 @@ class ReverseLinkedList {
         c.next = null
 
         // origin
-        printLinkedList(a)
+        a.printLinkedList()
         // reverse
-        printLinkedList(solution1(a))
+        solution1(a).printLinkedList()
         // reverse again
-        printLinkedList(solution2(c))
+        solution2(c).printLinkedList()
     }
 
     fun solution1(head: ListNode?): ListNode? {
@@ -36,18 +44,18 @@ class ReverseLinkedList {
         var curr = head
 
         while (curr != null) {
-//            Timber.d("-- curr: ${curr?.value} -> ${curr?.next?.value}" )
+            Timber.d("-- curr: ${curr?.value} -> ${curr?.next?.value}" )
             var nextTemp = curr.next
             curr.next = prev
             prev = curr
             curr = nextTemp
-//            Timber.d("curr: ${curr?.value} -> ${curr?.next?.value}" )
+            Timber.d("curr: ${curr?.value} -> ${curr?.next?.value}" )
         }
 
         return prev
     }
 
-    fun solution2(head: ListNode?): ListNode? {
+    private fun solution2(head: ListNode?): ListNode? {
         if (head?.next == null)
             return head
         val p = solution2(head.next!!)
@@ -55,6 +63,4 @@ class ReverseLinkedList {
         head.next = null
         return p
     }
-
-
 }

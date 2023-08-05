@@ -23,29 +23,33 @@ class LeetCodeActivity : AppCompatActivity(){
 
         Timber.plant(Timber.DebugTree())
 
-        listProblems()
+        val problems = listProblems()
+        initialAdapter(problems)
     }
 
-    private fun listProblems() {
+    private fun initialAdapter(problems: MutableList<Problem>) {
+        val listAdapter = ProblemListAdapter(problems)
+        binding.recyclerViewProblemList.layoutManager = LinearLayoutManager(this)
+        binding.recyclerViewProblemList.adapter = listAdapter
+    }
+
+    private fun listProblems(): MutableList<Problem> {
         // create problem list
-        val problemList : MutableList<Problem> = ArrayList()
+        val problemList =  mutableListOf<Problem>()
         problemList.add(Problem(1, "Two Sum") { No1TwoSum().testing() })
-        problemList.add(Problem(2, "Add Two Numbers") { AddTwoNumbers().testing() })
-        problemList.add(Problem(7, "Reverse Integer") { ReverseInteger().testing() })
-        problemList.add(Problem(9, "Palindrome Number") { PalindromeNumber().testing() })
+        problemList.add(Problem(2, "Add Two Numbers") { No2AddTwoNumbers().testing() })
+        problemList.add(Problem(7, "Reverse Integer") { No7ReverseInteger().testing() })
+        problemList.add(Problem(9, "Palindrome Number") { No9PalindromeNumber().testing() })
         problemList.add(Problem(20, "Valid Parentheses") { No20ValidParentheses().testing() })
-        problemList.add(Problem(206, "Reverse Linked List") { ReverseLinkedList().testing() })
-        problemList.add(Problem(334, "Reverse String") { ReverseString().testing() })
+        problemList.add(Problem(21, "Merge Two Sorted Lists") { No21MergeTwoSortedLists().testing() })
+        problemList.add(Problem(206, "Reverse Linked List") { No206ReverseLinkedList().testing() })
+        problemList.add(Problem(334, "Reverse String") { No344ReverseString().testing() })
 
         // not belong to LeetCode
         problemList.add(Problem(99999, "Minimum Depth of a Binary Tree") {
             MinimumDepthOfBinaryTree().testing()
         })
 
-
-        // initial adapter
-        val listAdapter = ProblemListAdapter(problemList)
-        binding.recyclerViewProblemList.layoutManager = LinearLayoutManager(this)
-        binding.recyclerViewProblemList.adapter = listAdapter
+        return problemList
     }
 }

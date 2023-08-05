@@ -2,11 +2,12 @@ package g.takeru.renshu.leetcode.problems
 
 import timber.log.Timber
 
-class ReverseString{
+class No344ReverseString{
 
     /**
-     * Reverse String
+     * Easy
      *
+     * Reverse String:
      * Write a function that takes a string as input and returns the string reversed.
      *
      * Example 1:
@@ -14,17 +15,17 @@ class ReverseString{
      */
 
     fun testing () {
-        var hello = "hello"
-        Timber.d("solution1 : " + solution(hello))
+        val hello = "hello"
+        Timber.d("solution1 : " + solution1(hello))
         Timber.d("solution2 : " + solution2(hello))
         Timber.d("solution3 : " + solution3(hello))
     }
 
-    fun solution(x: String): String {
+    private fun solution1(x: String): String {
         return StringBuilder(x).reverse().toString()
     }
 
-    fun solution2(x: String): String {
+    private fun solution2(x: String): String {
         var reverseString = ""
 
         for (i in x.length-1 downTo 0) {
@@ -33,7 +34,7 @@ class ReverseString{
         return reverseString
     }
 
-    fun solution3(x: String): String {
+    private fun solution3(x: String): String {
         val length = x.length
         if (length <= 1) return x
         val leftStr = x.substring(0, length / 2)
