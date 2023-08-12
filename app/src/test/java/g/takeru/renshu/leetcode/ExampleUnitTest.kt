@@ -1,5 +1,6 @@
 package g.takeru.renshu.leetcode
 
+import g.takeru.renshu.leetcode.problems.No242ValidAnagram
 import org.junit.Test
 
 import org.junit.Assert.*
@@ -13,5 +14,13 @@ class ExampleUnitTest {
     @Test
     fun addition_isCorrect() {
         assertEquals(4, 2 + 2)
+    }
+
+    @Test
+    fun no242ValidAnagramTest() {
+        val t = "anagram"
+        val s = "nagaram"
+        val result = No242ValidAnagram().solution1(t, s)
+        assertEquals(true, result)
     }
 }
